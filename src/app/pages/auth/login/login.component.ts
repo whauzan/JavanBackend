@@ -14,9 +14,7 @@ export class LoginComponent implements OnInit {
     private builder: FormBuilder
   ) {}
 
-  ngOnInit(): void {
-    // localStorage.clear();
-  }
+  ngOnInit(): void {}
 
   respData: any;
   loginForm = this.builder.group({
