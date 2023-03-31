@@ -1,0 +1,11 @@
+<mat-drawer-container class="min-h-screen border-0">
+  <mat-drawer mode="side" opened class="w-52 shadow-lg relative">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="relative">
+    <app-header></app-header>
+    <div class="mt-32 px-32 py-20">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

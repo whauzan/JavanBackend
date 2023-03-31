@@ -1,0 +1,26 @@
+<form [formGroup]="Form" (ngSubmit)="Submit()">
+  <div class="grid grid-cols-3 items-center" *ngFor="let item of FormModel">
+    <span class="col-span-1">{{ item.label }}</span>
+    <mat-form-field class="w-full col-span-2" appearance="fill">
+      <mat-label>{{ item.label }}</mat-label>
+      <input
+        matInput
+        placeholder="{{ item.label }}"
+        formControlName="{{ item.data }}"
+        *ngIf="!CheckTypeSelect(item.type); else select"
+      />
+      <ng-template #select>
+        <mat-select formControlName="{{ item.data }}">
+          <mat-option *ngFor="let select of item.options" [value]="select.value"
+            >{{ select.label }}
+          </mat-option>
+        </mat-select>
+      </ng-template>
+    </mat-form-field>
+  </div>
+  <div class="flex justify-center">
+    <button class="bg-[#37B744] text-white px-32 py-2 rounded-md" type="submit">
+      Save
+    </button>
+  </div>
+</form>

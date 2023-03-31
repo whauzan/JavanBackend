@@ -1,0 +1,22 @@
+<div
+  class="bg-[#EBF6FF] min-h-screen flex flex-col justify-center items-center"
+>
+  <form class="flex flex-col" [formGroup]="loginForm" (ngSubmit)="Login()">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput class="rounded-md p-1" placeholder="Username" required name="username" formControlName="username" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput class="rounded-md p-1" placeholder="Password" required type="password" name="password" formControlName="password" />
+    </mat-form-field>
+    <div class="flex justify-end">
+      <button
+        class="bg-[#91C0E4] text-white px-4 py-2 rounded-md"
+        type="submit"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

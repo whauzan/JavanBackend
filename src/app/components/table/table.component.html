@@ -1,0 +1,24 @@
+<div class="w-full relative overflow-x-auto rounded-md shadow-md">
+  <table
+    aria-describedby="mytable"
+    class="w-full text-sm text-left text-gray-500 rounded-md"
+  >
+    <thead class="text-xs text-gray-700 bg-gray-300">
+      <tr>
+        <th class="px-6 py-3" *ngFor="let head of HeadArray">
+          {{ head.label }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b" *ngFor="let item of DataArray">
+        <td class="px-6 py-4" *ngFor="let head of HeadArray">
+          <span *ngIf="!ShowStatus(head.data); else status">{{ item[head.data] }}</span>
+          <ng-template #status>
+            <app-button-status [Status]="item[head.data]"></app-button-status>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

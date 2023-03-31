@@ -1,0 +1,221 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullname": "Migdalia Mighty",
+      "username": "migdalia",
+      "password": "admin123",
+      "role": "Admin",
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "fullname": "Wahyu Hauzan",
+      "username": "whauzan",
+      "password": "user123",
+      "role": "User",
+      "created_at": ""
+    }
+  ],
+  "assets": [
+    {
+      "id": 1,
+      "assetName": "Asset 1",
+      "serialNumber": "ast1",
+      "type": "Asset Barang",
+      "locationId": 1,
+      "modelNumber": "123",
+      "manufacturer": "Yonda",
+      "currentStatus": "Running",
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "assetName": "Asset 2",
+      "serialNumber": "ast2",
+      "type": "Asset Barang",
+      "locationId": 2,
+      "modelNumber": "234",
+      "manufacturer": "Yonda",
+      "currentStatus": "Maintenance",
+      "created_at": ""
+    },
+    {
+      "id": 3,
+      "assetName": "Asset 3",
+      "serialNumber": "ast3",
+      "type": "Asset Barang",
+      "locationId": 3,
+      "modelNumber": "345",
+      "manufacturer": "Yonda",
+      "currentStatus": "Stopped",
+      "created_at": ""
+    },
+    {
+      "id": "4",
+      "assetName": "Asset 4",
+      "serialNumber": "ast4",
+      "type": "Asset Barang",
+      "locationId": 1,
+      "modelNumber": "456",
+      "manufacturer": "Yondai",
+      "currentStatus": "Stopped",
+      "created_at": "1680214952123"
+    },
+    {
+      "id": "5",
+      "assetName": "Asset 5",
+      "serialNumber": "ast5",
+      "type": "Asset Barang",
+      "locationId": 2,
+      "modelNumber": "567",
+      "manufacturer": "Yamada",
+      "currentStatus": "Maintenance",
+      "created_at": "1680216727974"
+    }
+  ],
+  "spareparts": [
+    {
+      "id": 1,
+      "sparepartName": "Sparepart 1",
+      "quantity": 10,
+      "type": "Sparepart Barang",
+      "locationId": 1,
+      "modelNumber": "123",
+      "manufacturer": "Yonda",
+      "currentStatus": "Sufficient",
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "sparepartName": "Sparepart 2",
+      "quantity": 20,
+      "type": "Sparepart Barang",
+      "locationId": 2,
+      "modelNumber": "234",
+      "manufacturer": "Yonda",
+      "currentStatus": "< 3",
+      "created_at": ""
+    },
+    {
+      "id": 3,
+      "sparepartName": "Sparepart 3",
+      "quantity": 30,
+      "type": "Sparepart Barang",
+      "locationId": 3,
+      "modelNumber": "345",
+      "manufacturer": "Yonda",
+      "currentStatus": "Empty",
+      "created_at": ""
+    },
+    {
+      "id": "4",
+      "sparepartName": "Sparepart 4",
+      "quantity": "40",
+      "type": "Sparepart Barang",
+      "locationId": 2,
+      "modelNumber": "456",
+      "manufacturer": "Yamada",
+      "currentStatus": "< 3",
+      "created_at": "1680217760066"
+    }
+  ],
+  "configurations": [
+    {
+      "id": 1,
+      "configName": "Configuration 1",
+      "type": "Configuration Barang",
+      "details": "Ini configuration barang 1",
+      "created_at": ""
+    },
+    {
+      "id": "2",
+      "configName": "Configuration 1",
+      "type": "Configuration Barang",
+      "details": "Coba detail sepanjang mungkin apakah akan over?",
+      "created_at": "1680218839139"
+    }
+  ],
+  "assetConfigs": [
+    {
+      "id": 1,
+      "assetId": 1,
+      "configId": 1,
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "assetId": 2,
+      "configId": 1,
+      "created_at": ""
+    },
+    {
+      "id": 3,
+      "assetId": 3,
+      "configId": 1,
+      "created_at": ""
+    }
+  ],
+  "assetSpareparts": [
+    {
+      "id": 1,
+      "assetId": 1,
+      "sparepartId": 1,
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "assetId": 2,
+      "sparepartId": 2,
+      "created_at": ""
+    },
+    {
+      "id": 3,
+      "assetId": 3,
+      "sparepartId": 3,
+      "created_at": ""
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "locationName": "Bandung",
+      "address": "Jalan In Aja Dulu",
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "locationName": "Jakarta",
+      "address": "Jalan Jalan Yuk",
+      "created_at": ""
+    },
+    {
+      "id": 3,
+      "locationName": "Bandung",
+      "address": "Jalan Sama Dia",
+      "created_at": ""
+    }
+  ],
+  "history": [
+    {
+      "id": 1,
+      "assetId": 1,
+      "configId": 1,
+      "sparepartId": 1,
+      "userId": 1,
+      "details": "Ini history 1",
+      "created_at": "1680110089548",
+      "title": "Lorem"
+    },
+    {
+      "id": 2,
+      "assetId": 2,
+      "configId": 1,
+      "sparepartId": 2,
+      "userId": 2,
+      "details": "Ini history 2",
+      "created_at": "1680110152036",
+      "title": "Ipsum"
+    }
+  ]
+}

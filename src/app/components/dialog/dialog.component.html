@@ -1,0 +1,16 @@
+<div class="flex justify-end">
+  <button mat-dialog-close>
+    <img src="/assets/close.png" width="25" height="25" alt="close button" />
+  </button>
+</div>
+
+<div mat-dialog-content class="">
+  <div class="h-full">
+    <div class="grid grid-cols-5 gap-x-4 px-10 h-full">
+      <div class="bg-[#dbdbdb] col-span-2 shadow-lg rounded-md p-2">Ini gambar</div>
+      <div class="bg-[#dbdbdb] col-span-3 shadow-lg rounded-md p-2">
+        <app-form [FormModel]="data.FormModel" [Form]="data.Form" [DialogRef]="dialogRef" [Data]="data.Data"></app-form>
+      </div>
+    </div>
+  </div>
+</div>

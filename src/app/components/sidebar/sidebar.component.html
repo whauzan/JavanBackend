@@ -1,0 +1,31 @@
+<div class="h-screen w-52 fixed">
+  <div class="bg-[#27608A] h-[35%] flex flex-col justify-center items-center">
+    <div class="w-28 h-28">
+      <app-avatar></app-avatar>
+    </div>
+    <h3 class="text-white pt-4">{{ username }}</h3>
+    <div class="flex space-x-6">
+      <div>
+        <a routerLink="/dashboard/home">
+          <mat-icon aria-hidden="false" aria-label="home icon"
+            >home</mat-icon
+          >
+        </a>
+      </div>
+      <div (click)="LogOut()">
+        <mat-icon aria-hidden="false" aria-label="logout icon"
+          >logout</mat-icon
+        >
+      </div>
+    </div>
+  </div>
+  <div class="bg-[#EBF6FF] h-[65%]">
+    <div class="px-6 pt-16 text-center space-y-2">
+      <div>
+        <a routerLink="/dashboard/assets">Assets</a>
+      </div>
+      <div><a routerLink="/dashboard/spareparts">Spare parts</a></div>
+      <div><a routerLink="/dashboard/configurations">Configurations</a></div>
+    </div>
+  </div>
+</div>
