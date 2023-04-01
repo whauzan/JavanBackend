@@ -12,7 +12,7 @@
     </thead>
     <tbody>
       <tr class="bg-white border-b" *ngFor="let item of DataArray">
-        <td class="px-6 py-4" *ngFor="let head of HeadArray">
+        <td class="px-6 py-4 cursor-pointer" *ngFor="let head of HeadArray" (click)="OpenDialog(item.id)">
           <span *ngIf="!ShowStatus(head.data); else status">{{ item[head.data] }}</span>
           <ng-template #status>
             <app-button-status [Status]="item[head.data]"></app-button-status>

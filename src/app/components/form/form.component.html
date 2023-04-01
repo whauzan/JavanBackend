@@ -1,26 +1,58 @@
-<form [formGroup]="Form" (ngSubmit)="Submit()">
-  <div class="grid grid-cols-3 items-center" *ngFor="let item of FormModel">
+<div *ngIf="Method != 'Get'; else listData">
+  <form [formGroup]="Form" (ngSubmit)="Submit()">
+    <div class="grid grid-cols-3 items-center" *ngFor="let item of FormModel">
+      <span class="col-span-1">{{ item.label }}</span>
+      <mat-form-field class="w-full col-span-2" appearance="fill">
+        <mat-label>{{ item.label }}</mat-label>
+        <input
+          matInput
+          [placeholder]="item.label"
+          [formControlName]="item.data"
+          *ngIf="!CheckTypeSelect(item.type); else select"
+        />
+        <ng-template #select>
+          <mat-select formControlName="{{ item.data }}">
+            <mat-option
+              *ngFor="let select of item.options"
+              [value]="select.value"
+              >{{ select.label }}
+            </mat-option>
+          </mat-select>
+        </ng-template>
+      </mat-form-field>
+    </div>
+    <div class="flex justify-center">
+      <button
+        class="bg-[#37B744] text-white px-32 py-2 rounded-md"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #listData>
+  <div
+    class="grid grid-cols-3 p-2 space-y-0 items-center"
+    *ngFor="let item of FormModel"
+  >
     <span class="col-span-1">{{ item.label }}</span>
-    <mat-form-field class="w-full col-span-2" appearance="fill">
-      <mat-label>{{ item.label }}</mat-label>
-      <input
-        matInput
-        placeholder="{{ item.label }}"
-        formControlName="{{ item.data }}"
-        *ngIf="!CheckTypeSelect(item.type); else select"
-      />
-      <ng-template #select>
-        <mat-select formControlName="{{ item.data }}">
-          <mat-option *ngFor="let select of item.options" [value]="select.value"
-            >{{ select.label }}
-          </mat-option>
-        </mat-select>
+    <div class="col-span-2 flex justify-between">
+      <span *ngIf="item.type != 'select'; else selectVal">{{
+        item.value
+      }}</span>
+      <ng-template #selectVal>
+        <span>{{ SelectValueConvert(item) }}</span>
       </ng-template>
-    </mat-form-field>
+      <span
+        ><img src="/assets/edit.png" alt="Edit icon" width="15" height="15" (click)="OnEdit()"
+      /></span>
+    </div>
   </div>
-  <div class="flex justify-center">
-    <button class="bg-[#37B744] text-white px-32 py-2 rounded-md" type="submit">
-      Save
+  <div class="flex justify-center my-6">
+    <button class="bg-[#E30E0E] text-white px-32 py-2 rounded-md" (click)="onDelete()">
+      Delete
     </button>
   </div>
-</form>
+</ng-template>

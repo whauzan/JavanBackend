@@ -59,8 +59,8 @@
       "locationId": 1,
       "modelNumber": "456",
       "manufacturer": "Yondai",
-      "currentStatus": "Stopped",
-      "created_at": "1680214952123"
+      "currentStatus": "Running",
+      "created_at": "1680330152508"
     },
     {
       "id": "5",
@@ -107,17 +107,6 @@
       "manufacturer": "Yonda",
       "currentStatus": "Empty",
       "created_at": ""
-    },
-    {
-      "id": "4",
-      "sparepartName": "Sparepart 4",
-      "quantity": "40",
-      "type": "Sparepart Barang",
-      "locationId": 2,
-      "modelNumber": "456",
-      "manufacturer": "Yamada",
-      "currentStatus": "< 3",
-      "created_at": "1680217760066"
     }
   ],
   "configurations": [
@@ -130,10 +119,10 @@
     },
     {
       "id": "2",
-      "configName": "Configuration 1",
+      "configName": "Configuration 2",
       "type": "Configuration Barang",
       "details": "Coba detail sepanjang mungkin apakah akan over?",
-      "created_at": "1680218839139"
+      "created_at": "1680333708406"
     }
   ],
   "assetConfigs": [

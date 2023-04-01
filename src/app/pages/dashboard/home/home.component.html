@@ -1,5 +1,70 @@
-<div class="min-h-screen">Home works</div>
-<div class="min-h-screen">
+<div class="min-h-screen grid grid-cols-2 gap-4">
+  <div
+    class="bg-[#F2F2F2] min-h-[300px] shadow-md rounded-md p-4 flex flex-col items-center"
+  >
+    <span class="font-semibold text-xl">Empty Spare Parts</span>
+    <div class="flex justify-end w-full mb-4">
+      <button
+        class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2"
+      >
+        <div>Sort</div>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >sort</mat-icon
+        >
+      </button>
+    </div>
+    <div class="w-full">
+      <app-table
+        [HeadArray]="emptySparepartsHead"
+        [DataArray]="emptySpareparts"
+      ></app-table>
+    </div>
+  </div>
+  <div
+    class="bg-[#F2F2F2] min-h-[300px] shadow-md rounded-md p-4 flex flex-col items-center"
+  >
+    <span class="font-semibold text-xl">Inactive Assets</span>
+    <div class="flex justify-end w-full mb-4">
+      <button
+        class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2"
+      >
+        <div>Sort</div>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >sort</mat-icon
+        >
+      </button>
+    </div>
+    <div class="w-full">
+      <app-table
+        [HeadArray]="inactiveAssetsHead"
+        [DataArray]="inactiveAssets"
+      ></app-table>
+    </div>
+  </div>
+    <img src="/assets/mitramas.png" alt="image" />
+  <div
+    class="bg-[#F2F2F2] min-h-[300px] shadow-md rounded-md p-4 flex flex-col items-center"
+  >
+    <span class="font-semibold text-xl">Assets on Maintenance</span>
+    <div class="flex justify-end w-full mb-4">
+      <button
+        class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2"
+      >
+        <div>Sort</div>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >sort</mat-icon
+        >
+      </button>
+    </div>
+    <div class="w-full">
+      <app-table
+        [HeadArray]="assetsMaintenanceHead"
+        [DataArray]="assetsMaintenance"
+      ></app-table>
+    </div>
+  </div>
+</div>
+<div class="min-h-screen mt-20">
   <h1 class="text-center">History</h1>
   <div class="flex justify-between mb-6">
     <div class="space-x-3">
@@ -14,13 +79,17 @@
       </button>
     </div>
     <div class="space-x-3 flex">
-      <button class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2">
+      <button
+        class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2"
+      >
         <div>Download</div>
         <mat-icon aria-hidden="false" aria-label="Example home icon"
           >download</mat-icon
         >
       </button>
-      <button class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2">
+      <button
+        class="bg-[#D9D9D9] shadow-md text-black px-4 py-2 rounded-md flex items-center space-x-2"
+      >
         <div>Sort</div>
         <mat-icon aria-hidden="false" aria-label="Example home icon"
           >sort</mat-icon

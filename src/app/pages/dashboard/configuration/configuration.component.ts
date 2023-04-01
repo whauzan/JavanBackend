@@ -17,6 +17,7 @@ export class ConfigurationComponent implements OnInit {
   ) {}
 
   configurations: any;
+  type: "assets" | "configurations" | "spareparts" = "configurations"
   dataTable: any;
   headArray = headArray;
   configFormModel = configFormModel;
@@ -35,9 +36,15 @@ export class ConfigurationComponent implements OnInit {
   }
 
   OnSearch(value: string) {
+    console.log(this.configurations);
+    
     if (value != "") {
       this.dataTable = this.configurations.filter((item: any) => {
-        return item.userfullname.toLowerCase().includes(value.toLowerCase());
+        return (
+          item.configName.toLowerCase().includes(value.toLowerCase()) ||
+          item.type.toLowerCase().includes(value.toLowerCase()) ||
+          item.details.toLowerCase().includes(value.toLowerCase())
+        );
       });
     } else {
       this.dataTable = this.configurations;
@@ -49,7 +56,8 @@ export class ConfigurationComponent implements OnInit {
       data: {
         FormModel: this.configFormModel,
         Form: this.configForm,
-        Data: "Configuration",
+        Type: this.type,
+        Method: "Post",
       },
       width: "1200px",
       minHeight: "600px",

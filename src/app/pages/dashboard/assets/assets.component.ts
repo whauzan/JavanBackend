@@ -17,6 +17,7 @@ export class AssetsComponent implements OnInit {
   ) {}
 
   assets: any;
+  type: "assets" | "configurations" | "spareparts" = "assets";
   dataTable: any;
   headArray = headArray;
   assetsFormModel = assetsFormModel;
@@ -61,7 +62,15 @@ export class AssetsComponent implements OnInit {
   OnSearch(value: string) {
     if (value != "") {
       this.dataTable = this.assets.filter((item: any) => {
-        return item.userfullname.toLowerCase().includes(value.toLowerCase());
+        return (
+          item.assetName.toLowerCase().includes(value.toLowerCase()) ||
+          item.serialNumber.toLowerCase().includes(value.toLowerCase()) ||
+          item.type.toLowerCase().includes(value.toLowerCase()) ||
+          item.locationName.toLowerCase().includes(value.toLowerCase()) ||
+          item.modelNumber.toLowerCase().includes(value.toLowerCase()) ||
+          item.manufacturer.toLowerCase().includes(value.toLowerCase()) ||
+          item.currentStatus.toLowerCase().includes(value.toLowerCase())
+        );
       });
     } else {
       this.dataTable = this.assets;
@@ -73,7 +82,8 @@ export class AssetsComponent implements OnInit {
       data: {
         FormModel: this.assetsFormModel,
         Form: this.assetsForm,
-        Data: "Asset"
+        Type: this.type,
+        Method: "Post",
       },
       width: "1200px",
       minHeight: "600px",

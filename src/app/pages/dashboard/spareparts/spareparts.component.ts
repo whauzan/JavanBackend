@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { RestapiService } from 'src/app/service/restapi.service';
-import { headArray, sparepartsFormModel } from './spareparts';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { DialogComponent } from "src/app/components/dialog/dialog.component";
+import { RestapiService } from "src/app/service/restapi.service";
+import { headArray, sparepartsFormModel } from "./spareparts";
 
 @Component({
   selector: "app-spareparts",
@@ -17,6 +17,7 @@ export class SparepartsComponent implements OnInit {
   ) {}
 
   spareparts: any;
+  type: "assets" | "configurations" | "spareparts" = "spareparts";
   dataTable: any;
   headArray = headArray;
   sparepartsFormModel = sparepartsFormModel;
@@ -61,7 +62,15 @@ export class SparepartsComponent implements OnInit {
   OnSearch(value: string) {
     if (value != "") {
       this.dataTable = this.spareparts.filter((item: any) => {
-        return item.userfullname.toLowerCase().includes(value.toLowerCase());
+        return (
+          item.sparepartName.toLowerCase().includes(value.toLowerCase()) ||
+          item.type.toLowerCase().includes(value.toLowerCase()) ||
+          item.locationName.toLowerCase().includes(value.toLowerCase()) ||
+          item.modelNumber.toLowerCase().includes(value.toLowerCase()) ||
+          item.manufacturer.toLowerCase().includes(value.toLowerCase()) ||
+          item.quantity == parseInt(value) ||
+          item.currentStatus.toLowerCase().includes(value.toLowerCase())
+        );
       });
     } else {
       this.dataTable = this.spareparts;
@@ -73,7 +82,8 @@ export class SparepartsComponent implements OnInit {
       data: {
         FormModel: this.sparepartsFormModel,
         Form: this.sparepartsForm,
-        Data: "Sparepart",
+        Type: this.type,
+        Method: "Post",
       },
       width: "1200px",
       minHeight: "600px",

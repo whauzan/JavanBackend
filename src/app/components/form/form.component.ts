@@ -19,40 +19,73 @@ export class FormComponent implements OnInit {
     options?: { label: string; value: string }[];
   }[] = [];
   @Input() Form: any;
-  @Input() Data: string = "";
+  @Input() Type: "assets" | "configurations" | "spareparts" = "assets";
+  @Input() Method: string = "";
   @Input() DialogRef!: MatDialogRef<DialogComponent>;
   constructor(private service: RestapiService) {}
 
-  ngOnInit(): void {
-    console.log(this.Data);
-    
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.DialogRef.afterClosed().subscribe(() => {
+      this.Form.reset();
+    });
   }
 
   Submit() {
-    const data: Asset | Sparepart | Configuration = this.Form.value;
-    data["created_at"] = Date.now().toString();
+    const dataForm: Asset | Sparepart | Configuration = this.Form.value;
+    dataForm["created_at"] = Date.now().toString();
 
-    switch (this.Data) {
-      case "Asset":
-        this.Data = "assets";
+    switch (this.Method) {
+      case "Post":
+        this.service.postData(dataForm, this.Type).subscribe(() => {
+          this.DialogRef.close();
+          window.location.reload();
+        });
         break;
-      case "Sparepart":
-        this.Data = "spareparts";
-        break;
-      case "Configuration":
-        this.Data = "configurations";
+      case "Put":
+        this.service
+          .putData(dataForm, this.Type, dataForm["id"])
+          .subscribe(() => {
+            this.DialogRef.close();
+            window.location.reload();
+          });
         break;
       default:
         break;
     }
-
-    this.service.postData(data, this.Data).subscribe(() => {
-      this.DialogRef.close();
-      window.location.reload();
-    });
   }
 
   CheckTypeSelect(type: string) {
     return type == "select";
+  }
+
+  SelectValueConvert(selectData: any) {
+    const selected = selectData["options"].find(
+      (item: { value: any }) => item.value == selectData.value
+    );
+    return selected["label"];
+  }
+
+  OnEdit() {
+    this.Method = "Put";
+    for (const element of this.FormModel) {
+      this.Form.get(element["data"]).setValue(element["value"]);
+    }
+  }
+
+  onDelete() {
+    const dataForm: {
+      label: string;
+      data: string;
+      type: string;
+      value: string | number;
+      options?: { label: string; value: string }[];
+    }[] = this.FormModel;
+
+    this.service.deleteData(this.Type, dataForm[0].value).subscribe(() => {
+      this.DialogRef.close();
+      window.location.reload();
+    });
   }
 }

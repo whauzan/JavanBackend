@@ -63,9 +63,33 @@ export class RestapiService {
     return this.http.get(`http://localhost:3000/locations`);
   }
 
-  postData(data: Asset | Sparepart | Configuration, type: string): Observable<any> {
+  postData(
+    data: Asset | Sparepart | Configuration,
+    type: string
+  ): Observable<any> {
     const headers = { "content-type": "application/json" };
     const body = JSON.stringify(data);
-    return this.http.post(`${this.baseUrl}/${type}`, body, { headers: headers });
+    return this.http.post(`${this.baseUrl}/${type}`, body, {
+      headers: headers,
+    });
+  }
+
+  putData(
+    data: Asset | Sparepart | Configuration,
+    type: string,
+    id: number
+  ): Observable<any> {
+    const headers = { "content-type": "application/json" };
+    const body = JSON.stringify(data);
+    return this.http.put(`${this.baseUrl}/${type}/${id}`, body, {
+      headers: headers,
+    });
+  }
+
+  deleteData(type: string, id: string | number): Observable<any> {
+    const headers = { "content-type": "application/json" };
+    return this.http.delete(`${this.baseUrl}/${type}/${id}`, {
+      headers: headers,
+    });
   }
 }
