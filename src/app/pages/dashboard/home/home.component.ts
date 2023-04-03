@@ -6,13 +6,17 @@ import {
   headArray,
   inactiveAssetsHead,
 } from "./home";
+import { ExcelService } from "src/app/service/excel.service";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit {
-  constructor(private service: RestapiService) {}
+  constructor(
+    private service: RestapiService,
+    private excelService: ExcelService
+  ) {}
 
   history: any;
   dataTable: any;
@@ -79,7 +83,8 @@ export class HomeComponent implements OnInit {
       this.service.getAssets().subscribe((item) => {
         this.assetsMaintenance = item;
         this.assetsMaintenance = this.assetsMaintenance.filter(
-          (item: { currentStatus: string }) => item.currentStatus == "Maintenance"
+          (item: { currentStatus: string }) =>
+            item.currentStatus == "Maintenance"
         );
         for (const element of this.assetsMaintenance) {
           this.service.getLocationById(element.locationId).subscribe((item) => {
@@ -91,9 +96,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  OnSearch(value: string) {
-    console.log(this.history);
-
+  OnSearch(value: string): void {
     if (value != "") {
       this.dataTable = this.history.filter((item: any) => {
         return (
@@ -105,5 +108,22 @@ export class HomeComponent implements OnInit {
     } else {
       this.dataTable = this.history;
     }
+  }
+
+  exportExcel(): void {
+    const fileToExport = this.history.map((items: any) => {
+      return {
+        Id: items?.id,
+        Title: items?.title,
+        User: items?.userfullname,
+        Detail: items?.details,
+        Time: items?.created_at,
+      };
+    });
+
+    this.excelService.exportToExcel(
+      fileToExport,
+      "History-" + new Date().getTime() + ".xlsx"
+    );
   }
 }

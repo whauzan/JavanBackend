@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/components/dialog/dialog.component";
 import { RestapiService } from "src/app/service/restapi.service";
 import { headArray, sparepartsFormModel } from "./spareparts";
+import { ExcelService } from "src/app/service/excel.service";
 
 @Component({
   selector: "app-spareparts",
@@ -12,6 +13,7 @@ import { headArray, sparepartsFormModel } from "./spareparts";
 export class SparepartsComponent implements OnInit {
   constructor(
     private service: RestapiService,
+    private excelService: ExcelService,
     private dialog: MatDialog,
     private builder: FormBuilder
   ) {}
@@ -88,5 +90,25 @@ export class SparepartsComponent implements OnInit {
       width: "1200px",
       minHeight: "600px",
     });
+  }
+
+  exportExcel(): void {
+    const fileToExport = this.spareparts.map((items: any) => {
+      return {
+        Id: items?.id,
+        Name: items?.sparepartName,
+        Type: items?.type,
+        Location: items?.locationName,
+        "Model Number": items?.modelNumber,
+        Manufacturer: items?.manufacturer,
+        Quantity: items?.quantity,
+        Status: items?.currentStatus,
+      };
+    });
+
+    this.excelService.exportToExcel(
+      fileToExport,
+      "Spareparts-" + new Date().getTime() + ".xlsx"
+    );
   }
 }

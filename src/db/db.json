@@ -105,8 +105,8 @@
       "locationId": 3,
       "modelNumber": "345",
       "manufacturer": "Yonda",
-      "currentStatus": "Empty",
-      "created_at": ""
+      "currentStatus": "Sufficient",
+      "created_at": "1680511221765"
     }
   ],
   "configurations": [

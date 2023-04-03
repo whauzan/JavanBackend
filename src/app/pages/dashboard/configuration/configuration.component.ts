@@ -4,6 +4,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "src/app/components/dialog/dialog.component";
 import { RestapiService } from "src/app/service/restapi.service";
 import { headArray, configFormModel } from "./configuration";
+import { ExcelService } from "src/app/service/excel.service";
 
 @Component({
   selector: "app-configuration",
@@ -12,12 +13,13 @@ import { headArray, configFormModel } from "./configuration";
 export class ConfigurationComponent implements OnInit {
   constructor(
     private service: RestapiService,
+    private excelService: ExcelService,
     private dialog: MatDialog,
     private builder: FormBuilder
   ) {}
 
   configurations: any;
-  type: "assets" | "configurations" | "spareparts" = "configurations"
+  type: "assets" | "configurations" | "spareparts" = "configurations";
   dataTable: any;
   headArray = headArray;
   configFormModel = configFormModel;
@@ -37,7 +39,7 @@ export class ConfigurationComponent implements OnInit {
 
   OnSearch(value: string) {
     console.log(this.configurations);
-    
+
     if (value != "") {
       this.dataTable = this.configurations.filter((item: any) => {
         return (
@@ -62,5 +64,21 @@ export class ConfigurationComponent implements OnInit {
       width: "1200px",
       minHeight: "600px",
     });
+  }
+
+  exportExcel(): void {
+    const fileToExport = this.configurations.map((items: any) => {
+      return {
+        Id: items?.id,
+        Name: items?.configName,
+        Type: items?.type,
+        Details: items?.details
+      };
+    });
+
+    this.excelService.exportToExcel(
+      fileToExport,
+      "Details-" + new Date().getTime() + ".xlsx"
+    );
   }
 }
